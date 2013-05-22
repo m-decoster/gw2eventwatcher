@@ -33,6 +33,19 @@ var event_names = {"568A30CF-8512-462F-9D67-647D69BEFAED":"Tequatl",
 					"C5972F64-B894-45B4-BC31-2DEEA6B7C033":"Jungle wurm",
 					"33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4":"Fire elemental",
 					"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"Frozen maw"}; // The text we show for each id
+var pre_events = {"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"6F516B2C-BD87-41A9-9197-A209538BB9DF",
+					"03BF176A-D59F-49CA-A311-39FC6F533F2F":"580A44EE-BAED-429A-B8BE-907A18E36189",
+					"0464CB9E-1848-4AAA-BA31-4779A959DD71":"0CA3A7E3-5F66-4651-B0CB-C45D3F0CAD95",
+					"568A30CF-8512-462F-9D67-647D69BEFAED":"350DB073-033E-4609-A007-98A83F9976E0",
+					"31CEBA08-E44D-472F-81B0-7143D73797F5":"36330140-7A61-4708-99EB-010B10420E39",
+					"C876757A-EF3E-4FBE-A484-07FF790D9B05":"36E81760-7D92-458E-AA22-7CDE94112B8F",
+					"C5972F64-B894-45B4-BC31-2DEEA6B7C033":"613A7660-8F3A-4897-8FAC-8747C12E42F8",
+					"33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4":"6B897FF9-4BA8-4EBD-9CEC-7DCFDA5361D8",
+					"C7DB3ED8-6A46-4F83-AB2D-B8BA423B6ED1":"C7DB3ED8-6A46-4F83-AB2D-B8BA423B6ED1",
+					"80D3201B-1AD0-42A1-B6AA-973FC923D6FC":"80D3201B-1AD0-42A1-B6AA-973FC923D6FC",
+					"29DA1A21-887F-49F4-9999-DCB1FC9A35AA":"29DA1A21-887F-49F4-9999-DCB1FC9A35AA",
+					"57A8E394-092D-4877-90A5-C238E882C320":"57A8E394-092D-4877-90A5-C238E882C320",
+					"97E55382-0CB5-4564-BDDF-3BE4DADE6A20":"97E55382-0CB5-4564-BDDF-3BE4DADE6A20"}; // The most relevant pre-event for this event
 var selected_world = ""; // The world that was selected to display the dynamic events for
 var checkboxes = []; // The checkboxes and their text
 
@@ -59,6 +72,10 @@ function callback() {
 			break;
 		case 1:
 			addEvents(parsed_object);
+			break;
+		case 2:
+			addEvents(parsed_object);
+			checkPre(parsed_object);
 			break;
 		default:
 			alert("We failed to parse the required information. Try refreshing the page.");
@@ -98,10 +115,10 @@ function addEvents(json_obj) {
 	var wasChecked = {};
 	for(var i = 0; i < checkboxes.length; i++) {
 		if(checkboxes[i].checkbox.checked) {
-			wasChecked[checkboxes[cb]] = true;
+			wasChecked[checkboxes[i].eventName] = true;
 		}
 		else {
-			wasChecked[checkboxes[cb]] = false;
+			wasChecked[checkboxes[i].eventName] = false;
 		}
 	}
 	// Remove any checkboxes that may already be on the document
@@ -118,7 +135,7 @@ function addEvents(json_obj) {
 	}
 	// Restore the state of the checkboxes
 	for(var i = 0; i < checkboxes.length; i++) {
-		checkboxes[i].checkbox.checked = wasChecked[checkboxes[cb]];
+		checkboxes[i].checkbox.checked = wasChecked[checkboxes[i].eventName];
 	}
 }
 
@@ -154,7 +171,7 @@ function addEventCheckBox(event) {
 	eventlist.appendChild(label);
 	eventlist.appendChild(linebreak);
 	
-	checkboxes.push({checkbox:checkbox, labelText:labelText});
+	checkboxes.push({checkbox:checkbox, labelText:labelText, eventName:event_names[event.event_id]});
 }
 
 /**
@@ -207,12 +224,35 @@ function startTimer(interval) {
 }
 
 /**
+* Check if the pre-event of a certain event has started.
+* Returns: nothing
+*/
+function checkPre(json_obj) {
+ 	var pre_id;
+ 	var event_array = json_obj["events"];
+	// Check the pre-event of each event
+	for(var i = 0; i < events_to_watch.length; i++) {
+		// Filter the pre-event
+		pre_id = pre_events[events_to_watch[i]];
+		for(var j = 0; j < event_array.length; j++) {
+			if(event_array[j].event_id == pre_id) {
+				if(event_array[j].event_state == "Active") {
+					document.getElementById("alertsound").play();
+					alert("The pre-events have started for : " + event_names[events_to_watch[i]]);
+					break; // out of the inner for loop
+				}
+			}
+		}
+	}
+}
+
+/**
 * Check if the events are ready to be started and alerts the user if so.
 * Returns: nothing
 */
 function checkEvents() {
 	// Refresh the information
-	state = 1;
+	state = 2;
 	request(EVENT_URL + getWorldId(selected_world));
 	
 	// Check the checkboxes if any is at preparation state or active state
@@ -220,7 +260,7 @@ function checkEvents() {
 		if(checkboxes[i].checkbox.checked) {
 			if(checkboxes[i].labelText.indexOf("Preparation") != -1 || checkboxes[i].labelText.indexOf("Active") != -1) {
 				document.getElementById("alertsound").play();
-				alert("An event has started or is about to start: " + checkboxes[i].labelText);
+				alert("An event has started or is about to start: " + checkboxes[i].eventName);
 			}
 		}
 	}
