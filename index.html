@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guild Wars 2 Meta</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<img src="images/GW2_Logo.jpg" alt="GW2 logo" />
+	<hgroup>
+		<h1>Guild Wars 2 Meta (Bèta)</h1>
+		<h2>Select a world from the list</h2>
+	</hgroup>
+	<form>
+		<select id="worldlist" onchange="changeWorld()">
+			<option value="none">Select a world</option>
+		</select>
+	</form>
+	<p>You can check events to be notified when they start.
+	A sound will play and an alert will appear on your screen.</p>
+	<p>Note: this page refreshes automatically every 30 seconds.
+	When refreshing, it downloads some data from the official Guild Wars 2
+	API.<br /><b>Please close this website if you're not actively using it.</b></p>
+	<form id="eventlist">
+	</form>
+	<footer>Website created by Mathieu De Coster,
+	using the official <a href="http://www.guildwars2.com">Guild Wars 2</a> API.
+	<p>Want to help make GW2Meta the best website for dynamic events? Check out the <a href="http://www.github.com/m-decoster/gw2eventwatcher">GitHub</a> page.</p>
+	</footer>
+	<p>© 2012 ArenaNet, Inc. All rights reserved. NCsoft, the interlocking NC logo, ArenaNet, Guild Wars, Guild Wars Factions, Guild Wars Nightfall, Guild Wars: Eye of the North, Guild Wars 2, and all associated logos and designs are trademarks or registered trademarks of NCsoft Corporation. All other trademarks are the property of their respective owners.
+</p>
+	
+	<audio id="alertsound" src="audio/alert.wav" preload="auto">
+	<script type="text/javascript" src="scripts/eventgetter_new.js"></script>
+</body>
+</html>
