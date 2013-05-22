@@ -247,21 +247,11 @@ function checkPre(json_obj) {
 }
 
 /**
-* Check if the events are ready to be started and alerts the user if so.
+* Check if the events are ready to be started.
 * Returns: nothing
 */
 function checkEvents() {
 	// Refresh the information
 	state = 2;
 	request(EVENT_URL + getWorldId(selected_world));
-	
-	// Check the checkboxes if any is at preparation state or active state
-	for(var i = 0; i < checkboxes.length; i++) {
-		if(checkboxes[i].checkbox.checked) {
-			if(checkboxes[i].labelText.indexOf("Preparation") != -1 || checkboxes[i].labelText.indexOf("Active") != -1) {
-				document.getElementById("alertsound").play();
-				alert("An event has started or is about to start: " + checkboxes[i].eventName);
-			}
-		}
-	}
 }
