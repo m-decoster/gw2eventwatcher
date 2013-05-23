@@ -30,9 +30,9 @@ var event_names = {"568A30CF-8512-462F-9D67-647D69BEFAED":"Tequatl",
 					"57A8E394-092D-4877-90A5-C238E882C320":"Grenth",
 					"97E55382-0CB5-4564-BDDF-3BE4DADE6A20":"Dwayna",
 					"C876757A-EF3E-4FBE-A484-07FF790D9B05":"Megadestroyer",
-					"C5972F64-B894-45B4-BC31-2DEEA6B7C033":"Jungle wurm",
-					"33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4":"Fire elemental",
-					"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"Frozen maw"}; // The text we show for each id
+					"C5972F64-B894-45B4-BC31-2DEEA6B7C033":"Jungle Wurm",
+					"33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4":"Fire Elemental",
+					"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"Frozen Maw"}; // The text we show for each id
 var pre_events = {"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"6F516B2C-BD87-41A9-9197-A209538BB9DF",
 					"03BF176A-D59F-49CA-A311-39FC6F533F2F":"580A44EE-BAED-429A-B8BE-907A18E36189",
 					"0464CB9E-1848-4AAA-BA31-4779A959DD71":"0CA3A7E3-5F66-4651-B0CB-C45D3F0CAD95",
@@ -89,19 +89,29 @@ function callback() {
 */
 function createDropDownList(json_obj) {
 	// First, sort the world names.
-	var world_array = [];
+	var world_name_unsorted = [];
+	var world_name = []
+	var world_id = [];
+		
 	for(var i = 0; i < json_obj.length; i++) {
-		world_array.push(json_obj[i].name);
+		world_name_unsorted.push(json_obj[i].name);
 	}
-	world_array.sort();
+	
+	world_name = world_name_unsorted.slice(0); world_name.sort();
+	
+	for (var i = 0; i < json_obj.length; i++) {
+		world_id.push(json_obj[world_name_unsorted.indexOf(world_name[i])].id);
+	}
+	
+	//world_array.sort();
 	// Now, add them to the dropdown list
 	var dropdown = document.getElementById("worldlist");
-	for(var i = 0; i < world_array.length; i++) {
+	for(var i = 0; i < json_obj.length; i++) {
 		var option = dropdown.appendChild(document.createElement("option"));
-		option.setAttribute("value", world_array[i]);
-		option.innerHTML = world_array[i];
+		option.setAttribute("value", world_name[i]);
+		option.innerHTML = world_name[i];
 		// Also store the id of this world so we can access it later
-		world_names.push({name:world_array[i],id:json_obj[i].id});
+		world_names.push({name:world_name[i],id:world_id[i]});
 	}
 }
 
@@ -111,6 +121,8 @@ function createDropDownList(json_obj) {
 */
 function addEvents(json_obj) {
 	var eventlist = document.getElementById("eventlist");
+	var eventTable = document.getElementById("eventTable");
+
 	// Check if a checkbox was checked, so we can check it later when checkboxes have been replaced
 	var wasChecked = {};
 	for(var i = 0; i < checkboxes.length; i++) {
@@ -122,12 +134,13 @@ function addEvents(json_obj) {
 		}
 	}
 	// Remove any checkboxes that may already be on the document
-	while(eventlist.firstChild) {
-		eventlist.removeChild(eventlist.firstChild);
+	while(eventTable.firstChild) {
+		eventTable.removeChild(eventTable.firstChild);
 	}
 	checkboxes = [];
 	// Now, we add a checkbox for each dynamic event that we want to watch
 	var event_array = json_obj["events"];
+
 	for(var i = 0; i < event_array.length; i++) {
 		if(shouldWatch(event_array[i])) {
 			addEventCheckBox(event_array[i]);
@@ -159,19 +172,46 @@ function shouldWatch(event) {
 */
 function addEventCheckBox(event) {
 	var eventlist = document.getElementById("eventlist");
+	var eventTable = document.getElementById("eventTable");
+	var eventclass = "";
+	
 	var checkbox = document.createElement("input");
 	checkbox.type = "checkbox";
 	checkbox.id = event.event_id;
-	var label = document.createElement("label");
-	var linebreak = document.createElement("br");
-	labelText = event_names[event.event_id] + "\t(" + event.state + ")";
-	label.innerHTML = labelText;
-	label.id = checkbox.id;
-	eventlist.appendChild(checkbox);
-	eventlist.appendChild(label);
-	eventlist.appendChild(linebreak);
 	
-	checkboxes.push({checkbox:checkbox, labelText:labelText, eventName:event_names[event.event_id]});
+	switch(event.state) {
+		case "Success":
+			eventclass = "eventDone";
+			break;
+		case "Fail":
+			eventclass = "eventFail";
+			break;
+		case "Warmup":
+			eventclass = "eventWarmup";
+			break;
+		case "Active":
+			eventclass = "eventActive";
+			break;
+	}
+	
+	var eventRow = document.createElement("tr");
+	eventRow.className = eventclass;
+	
+	var eventChk = document.createElement("td");
+	
+	var eventLabel = document.createElement("td");
+	eventLabel.innerHTML = event_names[event.event_id];
+	
+	var eventStatus = document.createElement("td");
+	eventStatus.innerHTML = event.state;
+	
+	eventTable.appendChild(eventRow);
+	eventRow.appendChild(eventChk);
+	eventChk.appendChild(checkbox);
+	eventRow.appendChild(eventLabel);
+	eventRow.appendChild(eventStatus);
+	
+	checkboxes.push({checkbox:checkbox, labelText:eventLabel, eventName:event_names[event.event_id]});
 }
 
 /**
