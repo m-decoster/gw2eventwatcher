@@ -1,10 +1,15 @@
-body
+body,table
 {	
 	margin-left: auto;
 	margin-right: auto;
 	font-family: "Arial", sans-serif;
 	text-align: center;
 	width: 80%;
+}
+
+table
+{
+	width: 50%;
 }
 
 footer
@@ -17,4 +22,28 @@ img
 {
 	width: 425px;
 	height: 270px;
+}
+
+tr.eventDone
+{
+	background-color: green;
+	color: white;
+}
+
+tr.eventFail
+{
+	background-color: black;
+	color: white;
+}
+
+tr.eventWarmup
+{
+	background-color: orange;
+	color: black;
+}
+
+tr.eventActive
+{
+	background-color: darkred;
+	color: white;
 }
