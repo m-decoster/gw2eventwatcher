@@ -290,14 +290,28 @@ function checkPre(json_obj) {
 	for(var i = 0; i < events_to_watch.length; i++) {
 		// Filter the pre-event
 		pre_id = pre_events[events_to_watch[i]];
+		var shouldAlert = false;
 		for(var j = 0; j < event_array.length; j++) {
-			if(event_array[j].event_id == pre_id) {
-				if(event_array[j].state == "Active" && isChecked(event_array[j].event_id)) {
-					document.getElementById("alertsound").play();
-					alert("The pre-events have started for : " + event_names[events_to_watch[i]]);
-					break; // out of the inner for loop
+			// if we're at a meta event
+			if(event_array[j].event_id == events_to_watch[i]) {
+				if(isChecked(event_array[j].event_id)) {
+					// we want to have an alert for this event when it's ready
+					shouldAlert = event_array[j].state == "Active";
 				}
 			}
+			// if we're at a pre-event
+			if(event_array[j].event_id == pre_id) {
+				if(event_array[j].state == "Active") {
+					break; // out of the inner for loop
+				}
+				else {
+					shouldAlert = false;
+				}
+			}
+		}
+		if(shouldAlert) {
+			document.getElementById("alertsound").play();
+			alert("The pre-events have started for : " + event_names[events_to_watch[i]]);
 		}
 	}
 }
