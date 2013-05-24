@@ -192,6 +192,9 @@ function addEventCheckBox(event) {
 		case "Active":
 			eventclass = "eventActive";
 			break;
+		case "Preparation":
+			eventclass = "eventPrep";
+			break;
 	}
 	
 	var eventRow = document.createElement("tr");
