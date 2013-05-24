@@ -1,7 +1,7 @@
 Guild Wars 2 Meta Event Notifier
 ================================
 
-Here you can find the JavaScript source code of the meta event notifier I wrote.
+Here you can find the HTML, CSS and JavaScript source code of the meta event notifier I wrote.
 You can check it out <a href="http://tinyurl.com/gw2eventwatcher">here</a>.
 
 How does it work?
@@ -25,3 +25,8 @@ If you wish to contribute to GW2 Meta, here are some things you could do:
 - Extend the CSS code, to create a nice looking webpage
 - Add more meta events (this is easy! All you have to do is find the correct event,
 and then copy paste the ID from the API into eventwatcher_new.js)
+
+Screenshots
+-----------
+
+![Gandara events screenshot](https://dl.dropboxusercontent.com/u/46075527/Screenshot%20-%2005242013%20-%2004%3A28%3A38%20PM.png)
