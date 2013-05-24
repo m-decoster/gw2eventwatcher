@@ -23,6 +23,5 @@ How to contribute
 If you wish to contribute to GW2 Meta, here are some things you could do:
 
 - Extend the CSS code, to create a nice looking webpage
-- Implement the website using HTML5 Web Workers, to ensure that the site runs correctly even when it is in another tab (this is currently an issue on some browsers)
 - Add more meta events (this is easy! All you have to do is find the correct event,
 and then copy paste the ID from the API into eventwatcher_new.js)
