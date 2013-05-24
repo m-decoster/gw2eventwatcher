@@ -267,6 +267,19 @@ function startTimer(interval) {
 }
 
 /**
+* Checks if we want to watch a certain event.
+* Returns: a boolean value
+*/
+function isChecked(event_id) {
+	for(var i = 0; i < checkboxes.length; i++) {
+		if(checkboxes[i].eventName == event_names[event_id]) {
+			return checkboxes[i].checkbox.checked;
+		}
+	}
+	return false;
+}
+
+/**
 * Check if the pre-event of a certain event has started.
 * Returns: nothing
 */
@@ -279,7 +292,7 @@ function checkPre(json_obj) {
 		pre_id = pre_events[events_to_watch[i]];
 		for(var j = 0; j < event_array.length; j++) {
 			if(event_array[j].event_id == pre_id) {
-				if(event_array[j].event_state == "Active") {
+				if(event_array[j].state == "Active" && isChecked(event_array[j].event_id)) {
 					document.getElementById("alertsound").play();
 					alert("The pre-events have started for : " + event_names[events_to_watch[i]]);
 					break; // out of the inner for loop
