@@ -51,7 +51,7 @@ var checkboxes = []; // The checkboxes and their text
 
 var EVENT_URL = "https://api.guildwars2.com/v1/events.json?world_id="; // URL to get events of certain world
 var WORLD_URL = "https://api.guildwars2.com/v1/world_names.json"; // URL to get world names
-var UPDATE_INTERVAL = 30000; // Time between dynamic event information updates in ms
+var UPDATE_INTERVAL = 15000; // Time between dynamic event information updates in ms
 
 // START THE SCRIPT
 state = 0;
@@ -296,16 +296,22 @@ function checkPre(json_obj) {
 			if(event_array[j].event_id == events_to_watch[i]) {
 				if(isChecked(event_array[j].event_id)) {
 					// we want to have an alert for this event when it's ready
-					shouldAlert = event_array[j].state == "Active";
+					shouldAlert = true;
 				}
 			}
+		}
+		for(var j = 0; j < event_array.length; j++) {
 			// if we're at a pre-event
 			if(event_array[j].event_id == pre_id) {
 				if(event_array[j].state == "Active") {
+					// if the pre-event is active, we leave shouldAlert as it is
+					// (if it's true because it's checked, it remains true, else it remains false)
 					break; // out of the inner for loop
 				}
 				else {
+					// If the pre-event is not active, we should not alert
 					shouldAlert = false;
+					break;
 				}
 			}
 		}
