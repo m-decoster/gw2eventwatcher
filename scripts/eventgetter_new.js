@@ -297,6 +297,13 @@ function checkPre(json_obj) {
 				if(isChecked(event_array[j].event_id)) {
 					// we want to have an alert for this event when it's ready
 					shouldAlert = true;
+					// if this event is already Active, we want to alert
+					if(event_array[j].state == "Active") {
+						document.getElementById("alertsound").play();
+						alert(event_names[events_to_watch[i]] + " is up!");
+						// however, we don't want a second alert for the pre_event
+						shouldAlert = false;
+					}
 				}
 			}
 		}
