@@ -164,6 +164,10 @@ function addEvents(json_obj) {
 	for(var i = 0; i < checkboxes.length; i++) {
 		checkboxes[i].checkbox.checked = wasChecked[checkboxes[i].eventName];
 	}
+	
+	// Scroll down to the table
+	location.href = "#";
+	location.href = "#eventTable";
 }
 
 /**

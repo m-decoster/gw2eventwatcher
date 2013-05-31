@@ -14,7 +14,7 @@ table
 
 footer
 {
-	margin-top: 5%;
+	margin-top: 2%;
 	font-size: 8pt;
 }
 
@@ -48,21 +48,31 @@ tr.eventActive
 	color: white;
 }
 
-td a:link, td a:visited {
+tr.eventPrep
+{
+	background-color: gray;
+	color: white;
+}
+
+td a:link, td a:visited
+{
 	color: inherit;
 	text-decoration: none;
 }
 
-td a:hover {
+td a:hover 
+{
 	text-decoration: underline;
 }
 
-tr td {
+tr td
+{
 	padding: 0px;
 	margin: 0px;
 }
 
-td img {
+td img 
+{
 	margin-top: 5px;
 	max-width: 32px;
 	max-height: 32px;
