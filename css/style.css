@@ -18,10 +18,10 @@ footer
 	font-size: 8pt;
 }
 
-img
+#logo
 {
-	width: 425px;
-	height: 270px;
+	width: 341px;
+	height: 240px;
 }
 
 tr.eventDone
@@ -55,4 +55,15 @@ td a:link, td a:visited {
 
 td a:hover {
 	text-decoration: underline;
+}
+
+tr td {
+	padding: 0px;
+	margin: 0px;
+}
+
+td img {
+	margin-top: 5px;
+	max-width: 32px;
+	max-height: 32px;
 }

@@ -187,6 +187,7 @@ function shouldWatch(event) {
 function addEventCheckBox(event) {
 	var eventlist = document.getElementById("eventlist");
 	var eventTable = document.getElementById("eventTable");
+	eventTable.setAttribute("style","border:1px solid black;");
 	var eventclass = "";
 	
 	var checkbox = document.createElement("input");
@@ -216,6 +217,12 @@ function addEventCheckBox(event) {
 	
 	var eventChk = document.createElement("td");
 	
+	var eventImage = document.createElement("td");
+	var img = document.createElement("img");
+	img.setAttribute("src","images/" + event.event_id + ".png");
+	img.setAttribute("alt","event image");
+	eventImage.appendChild(img);
+	
 	var eventLabel = document.createElement("td");
 	var eventLink = document.createElement("a");
 	eventLink.setAttribute("href",wiki_links[event.event_id]);
@@ -229,6 +236,7 @@ function addEventCheckBox(event) {
 	eventTable.appendChild(eventRow);
 	eventRow.appendChild(eventChk);
 	eventChk.appendChild(checkbox);
+	eventRow.appendChild(eventImage);
 	eventRow.appendChild(eventLabel);
 	eventRow.appendChild(eventStatus);
 	
