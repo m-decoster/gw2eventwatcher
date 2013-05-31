@@ -219,6 +219,7 @@ function addEventCheckBox(event) {
 	var eventLabel = document.createElement("td");
 	var eventLink = document.createElement("a");
 	eventLink.setAttribute("href",wiki_links[event.event_id]);
+	eventLink.setAttribute("target","_blank");
 	eventLink.innerHTML = event_names[event.event_id];
 	eventLabel.appendChild(eventLink);
 	
