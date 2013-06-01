@@ -29,4 +29,4 @@ and then copy paste the ID from the API into eventwatcher_new.js)
 Screenshots
 -----------
 
-![Gandara events screenshot](https://dl.dropboxusercontent.com/u/46075527/Screenshot%20-%2005242013%20-%2004%3A28%3A38%20PM.png)
+![Gandara events screenshot](https://dl.dropboxusercontent.com/u/46075527/Screenshot%20-%2006012013%20-%2012%3A24%3A42%20PM.png)
