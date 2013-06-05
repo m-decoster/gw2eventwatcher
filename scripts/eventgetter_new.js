@@ -21,7 +21,8 @@ var events_to_watch = ["568A30CF-8512-462F-9D67-647D69BEFAED",
 					"33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4",
 					"D5F31E0B-E0E3-42E3-87EC-337B3037F437",
 					"0464CB9E-1848-4AAA-BA31-4779A959DD71",
-					"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2"]; // Ids of the events we want to watch
+					"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2",
+					"E1CC6E63-EFFE-4986-A321-95C89EA58C07"]; // Ids of the events we want to watch
 var event_names = {"568A30CF-8512-462F-9D67-647D69BEFAED":"Tequatl",
 					"03BF176A-D59F-49CA-A311-39FC6F533F2F":"Shatterer",
 					"0464CB9E-1848-4AAA-BA31-4779A959DD71":"Claw of Jormag",
@@ -35,7 +36,8 @@ var event_names = {"568A30CF-8512-462F-9D67-647D69BEFAED":"Tequatl",
 					"C5972F64-B894-45B4-BC31-2DEEA6B7C033":"Jungle Wurm",
 					"33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4":"Fire Elemental",
 					"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"Frozen Maw",
-					"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2":"Mark II Golem"}; // The text we show for each id
+					"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2":"Mark II Golem",
+					"E1CC6E63-EFFE-4986-A321-95C89EA58C07":"Karka Queen"}; // The text we show for each id
 var pre_events = {"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"6F516B2C-BD87-41A9-9197-A209538BB9DF",
 					"03BF176A-D59F-49CA-A311-39FC6F533F2F":"580A44EE-BAED-429A-B8BE-907A18E36189",
 					"0464CB9E-1848-4AAA-BA31-4779A959DD71":"C957AD99-25E1-4DB0-9938-F54D9F23587B",
@@ -49,7 +51,8 @@ var pre_events = {"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"6F516B2C-BD87-41A9-919
 					"29DA1A21-887F-49F4-9999-DCB1FC9A35AA":"D0ECDACE-41F8-46BD-BB17-8762EF29868C",
 					"57A8E394-092D-4877-90A5-C238E882C320":"99254BA6-F5AE-4B07-91F1-61A9E7C51A51",
 					"97E55382-0CB5-4564-BDDF-3BE4DADE6A20":"F531683F-FC09-467F-9661-6741E8382E24",
-					"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2":"3ED4FEB4-A976-4597-94E8-8BFD9053522F"}; // The most relevant pre-event for this event
+					"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2":"3ED4FEB4-A976-4597-94E8-8BFD9053522F",
+					"E1CC6E63-EFFE-4986-A321-95C89EA58C07":"E1CC6E63-EFFE-4986-A321-95C89EA58C07"}; // The most relevant pre-event for this event
 						// (or the event itself in case of lack of a pre-event)
 var wiki_links = {"568A30CF-8512-462F-9D67-647D69BEFAED":"http://wiki.guildwars2.com/wiki/Defeat_Tequatl_the_Sunless",
 					"03BF176A-D59F-49CA-A311-39FC6F533F2F":"http://wiki.guildwars2.com/wiki/Slay_the_Shatterer",
@@ -64,7 +67,8 @@ var wiki_links = {"568A30CF-8512-462F-9D67-647D69BEFAED":"http://wiki.guildwars2
 					"C5972F64-B894-45B4-BC31-2DEEA6B7C033":"http://wiki.guildwars2.com/wiki/Defeat_the_great_jungle_wurm",
 					"33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4":"http://wiki.guildwars2.com/wiki/Destroy_the_fire_elemental_created_from_chaotic_energy_fusing_with_the_C.L.E.A.N._5000%27s_energy_core",
 					"D5F31E0B-E0E3-42E3-87EC-337B3037F437":"http://wiki.guildwars2.com/wiki/Kill_the_Svanir_shaman_chief_to_break_his_control_over_the_ice_elemental",
-					"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2":"http://wiki.guildwars2.com/wiki/Defeat_the_Inquest's_golem_Mark_II"}; // Links to the GW2W page for each event
+					"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2":"http://wiki.guildwars2.com/wiki/Defeat_the_Inquest's_golem_Mark_II",
+					"E1CC6E63-EFFE-4986-A321-95C89EA58C07":"http://wiki.guildwars2.com/wiki/Defeat_the_Karka_Queen_threatening_the_settlements"}; // Links to the GW2W page for each event
 var selected_world = ""; // The world that was selected to display the dynamic events for
 var checkboxes = []; // The checkboxes and their text
 
