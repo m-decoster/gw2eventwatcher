@@ -54,6 +54,12 @@ tr.eventPrep
 	color: white;
 }
 
+tr.eventInactive
+{
+	background-color: #8DC3F2;
+	color: black;
+}
+
 td a:link, td a:visited
 {
 	color: inherit;
