@@ -154,8 +154,6 @@ function createDropDownList(json_obj) {
 function addEvents(json_obj) {
 	var eventlist = document.getElementById("eventlist");
 	var eventTable = document.getElementById("eventTable");
-	
-	eventTable.setAttribute("height","" + 41 * events_to_watch.length + "px");
 
 	// Check if a checkbox was checked, so we can check it later when checkboxes have been replaced
 	var wasChecked = {};
