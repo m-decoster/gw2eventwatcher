@@ -97,7 +97,7 @@ request(WORLD_URL);
 * Returns: nothing
 */
 function callback() {
-	if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 		var parsed_object = JSON.parse(xmlhttp.responseText);
 		switch(state) {
 		case 0:
@@ -195,7 +195,7 @@ function addEvents(json_obj) {
 function shouldWatch(event) {
 	var event_id = event.event_id;
 	for(var i = 0; i < events_to_watch.length; i++) {
-		if(event_id == events_to_watch[i]) {
+		if(event_id === events_to_watch[i]) {
 			return true;
 		}
 	}
@@ -271,7 +271,7 @@ function changeWorld() {
 */
 function getWorldId(world_name) {
 	for(var i = 0; i < world_names.length; i++) {
-		if(world_names[i].name == world_name) {
+		if(world_names[i].name === world_name) {
 			return world_names[i].id;
 		}
 	}
@@ -301,7 +301,7 @@ function startTimer(interval) {
 */
 function isChecked(event_id) {
 	for(var i = 0; i < checkboxes.length; i++) {
-		if(checkboxes[i].eventName == event_names[event_id]) {
+		if(checkboxes[i].eventName === event_names[event_id]) {
 			return checkboxes[i].checkbox.checked;
 		}
 	}
@@ -322,12 +322,12 @@ function checkPre(json_obj) {
 		var shouldAlert = false;
 		for(var j = 0; j < event_array.length; j++) {
 			// if we're at a meta event
-			if(event_array[j].event_id == events_to_watch[i]) {
+			if(event_array[j].event_id === events_to_watch[i]) {
 				if(isChecked(event_array[j].event_id)) {
 					// we want to have an alert for this event when it's ready
 					shouldAlert = true;
 					// if this event is already Active, we want to alert
-					if(event_array[j].state == "Active") {
+					if(event_array[j].state === "Active") {
 						document.getElementById("alertsound").play();
 						alert(event_names[events_to_watch[i]] + " is up!");
 						// however, we don't want a second alert for the pre_event
@@ -338,8 +338,8 @@ function checkPre(json_obj) {
 		}
 		for(var j = 0; j < event_array.length; j++) {
 			// if we're at a pre-event
-			if(event_array[j].event_id == pre_id) {
-				if(event_array[j].state == "Active") {
+			if(event_array[j].event_id === pre_id) {
+				if(event_array[j].state === "Active") {
 					// if the pre-event is active, we leave shouldAlert as it is
 					// (if it's true because it's checked, it remains true, else it remains false)
 					break; // out of the inner for loop
