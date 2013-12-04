@@ -212,35 +212,13 @@ function addEventCheckBox(event) {
 	var eventlist = document.getElementById("eventlist");
 	var eventTable = document.getElementById("eventTable");
 	eventTable.setAttribute("style","border:1px solid black;");
-	var eventclass = "";
 	
 	var checkbox = document.createElement("input");
 	checkbox.type = "checkbox";
 	checkbox.id = event.event_id;
 	
-	switch(event.state) {
-		case "Success":
-			eventclass = "eventDone";
-			break;
-		case "Fail":
-			eventclass = "eventFail";
-			break;
-		case "Warmup":
-			eventclass = "eventWarmup";
-			break;
-		case "Active":
-			eventclass = "eventActive";
-			break;
-		case "Preparation":
-			eventclass = "eventPrep";
-			break;
-		case "Inactive":
-			eventclass = "eventInactive";
-			break;
-	}
-	
 	var eventRow = document.createElement("tr");
-	eventRow.className = eventclass;
+	eventRow.className = event.state;
 	
 	var eventChk = document.createElement("td");
 	

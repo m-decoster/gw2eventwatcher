@@ -24,37 +24,37 @@ footer
 	height: 240px;
 }
 
-tr.eventDone
+tr.Success
 {
 	background-color: green;
 	color: white;
 }
 
-tr.eventFail
+tr.Fail
 {
 	background-color: black;
 	color: white;
 }
 
-tr.eventWarmup
+tr.Warmup
 {
 	background-color: orange;
 	color: black;
 }
 
-tr.eventActive
+tr.Active
 {
 	background-color: darkred;
 	color: white;
 }
 
-tr.eventPrep
+tr.Preparation
 {
 	background-color: gray;
 	color: white;
 }
 
-tr.eventInactive
+tr.Inactive
 {
 	background-color: #8DC3F2;
 	color: black;
