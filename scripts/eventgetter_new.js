@@ -84,7 +84,7 @@ var checkboxes = []; // The checkboxes and their text
 
 var EVENT_URL = "https://api.guildwars2.com/v1/events.json?world_id="; // URL to get events of certain world
 var WORLD_URL = "https://api.guildwars2.com/v1/world_names.json"; // URL to get world names
-var UPDATE_INTERVAL = 15000; // Time between dynamic event information updates in ms
+var UPDATE_INTERVAL = 5000; // Time between dynamic event information updates in ms
 
 // START THE SCRIPT
 state = 0;
