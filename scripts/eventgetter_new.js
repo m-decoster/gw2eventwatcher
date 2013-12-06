@@ -334,11 +334,10 @@ function checkPre(json_obj) {
 						shouldAlert = false;
 					}
 				}
-			}
-		}
-		for(var j = 0; j < event_array.length; j++) {
+			} // end if
+			
 			// if we're at a pre-event
-			if(event_array[j].event_id === pre_id) {
+			else if(event_array[j].event_id === pre_id) {
 				if(event_array[j].state === "Active") {
 					// if the pre-event is active, we leave shouldAlert as it is
 					// (if it's true because it's checked, it remains true, else it remains false)
@@ -347,15 +346,15 @@ function checkPre(json_obj) {
 				else {
 					// If the pre-event is not active, we should not alert
 					shouldAlert = false;
-					break;
+					break; // out of the inner for loop
 				}
 			}
-		}
+		} // end for
 		if(shouldAlert) {
 			document.getElementById("alertsound").play();
 			alert("The pre-events have started for : " + event_names[events_to_watch[i]]);
 		}
-	}
+	} // end for
 }
 
 /**
