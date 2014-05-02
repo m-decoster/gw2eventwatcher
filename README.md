@@ -1,6 +1,8 @@
 Guild Wars 2 Meta Event Notifier
 ================================
 
+**Note**: Due to the new MegaServer system, GW2 Meta no longer works. ArenaNet is planning on releasing a new API. In the mean time, you should use some other service.
+
 Here you can find the HTML, CSS and JavaScript source code of the meta event notifier I wrote.
 You can check it out <a href="http://tinyurl.com/gw2eventwatcher">here</a>.
 
